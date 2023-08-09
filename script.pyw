@@ -1,6 +1,8 @@
 import os
 import subprocess
 import shutil
+import tkinter
+from tkinter import simpledialog
 
 
 
@@ -13,10 +15,8 @@ def create_reaper_project():
 
 
 # Project name
-    project_name = input("Veuillez choisir un nom pour votre projet.")
+    project_name = simpledialog.askstring("Nom du Projet", "Veuillez saisir un nom pour votre projet :")
     project_path = os.path.join(repertory, project_name)
-
-    print(project_path)
 
 
 # Test -- Does the folder already exist ?
@@ -30,7 +30,7 @@ def create_reaper_project():
         os.chdir( project_path )
     except OSError as e:
         print (f"Impossible de créer le projet car : {e}")
-
+    #TODO Dérivation si ça échoue, ne pas exécuter la suite.
 
 # File copy
     origin_file = "D:\Python\Actionbar\\reaper_files\\empty.rpp"
@@ -44,6 +44,7 @@ def create_reaper_project():
 
     except subprocess.CalledProcessError as e:
         print(f"Erreur lors de l'exécution de Reaper : {e}")
+        #TODO Remplacer les prints par de vraies fenêtres de dialogue.
 
 
 # Function call
